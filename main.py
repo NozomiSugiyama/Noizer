@@ -4,7 +4,6 @@
 
 import datetime, sys, os
 import time
-from twitterclient import TwitterClient
 from newscheck import NewsCheck
 from weathercheck import WeatherCheck
 from createtalk import CreateTalk, print_log, pygame_alert, pyaudio_alert
@@ -28,17 +27,6 @@ def main():
     filename_news_1 = 'news.wav'
     filename_news_2 = 'news2.wav'
 
-    CK = 'hJvyfVJ2ElPy0sWCZOKMow6vN'
-    CS = 'aMJZ6Gl16TRKuGQWnSUyuIMRWPKac3L391ljJUbKY5MdZmE3lM'
-    AT = '1258063964-oBpOPdkKgEGgc7XeL857dq45v8v2ur4CjFWUKf6'
-    AS = 'sM0IdfKJZNHlojLHQPesWln2eEUzmTteC2WkY2m2uOMxR'
-
-    twitter_client = TwitterClient(CK, CS, AT, AS)
-    tweet_word = news_check.get_rss_news_title(1)
-    try:
-        twitter_client.update_status(tweet_word)
-    except Exception as e:
-        print(e)
 
     speaker = 'hikari'
 
