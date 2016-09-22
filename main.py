@@ -2,11 +2,16 @@
 # -*- coding: utf-8 -*-
 
 
-import datetime, sys, os
+import datetime
+import os
 import time
+
+import subprocess
+
+from createtalk import CreateTalk, print_log, pygame_alert
 from newscheck import NewsCheck
 from weathercheck import WeatherCheck
-from createtalk import CreateTalk, print_log, pygame_alert, pyaudio_alert
+
 
 def main():
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -27,7 +32,6 @@ def main():
     filename_news_1 = 'news.wav'
     filename_news_2 = 'news2.wav'
 
-
     speaker = 'hikari'
 
     CreateTalk.create_talk(date_talk + weather_talk + temp_talk, filename_weather, dir_name, speaker=speaker)
@@ -43,22 +47,31 @@ def main():
         time.sleep(1)
         CreateTalk.pygame_speak(filename_news_2, dir_name)
 
+    subprocess.call("python tcpserver.py " + str(os.getpid()) + " &", shell=True)
 
     talk()
+
 
 if __name__ == '__main__':
     while True:
 
+        main()
+
         alarm_hour = 1
         alarm_minute = 17
+
+        alarm_repeat_minute = 30
+        alarm_repeat_num = 4
 
         now = datetime.datetime.today()
 
         if now.hour == alarm_hour and now.minute == alarm_minute:
-            main()
+            for i in range(alarm_repeat_num):
+                main()
+                time.sleep(alarm_repeat_minute * 60)
 
         # list内方式
         # Reactiveプログラミング
         #
         # map
-        time.sleep(10)
+        time.sleep(30)
