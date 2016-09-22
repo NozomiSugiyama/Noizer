@@ -10,30 +10,29 @@ class NoizerApi():
         self.pid = pid
 
     def start(self):
-        while True:
 
-            server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            try:
-                server.bind(self.address)
-            except:
-                print('Waiting for the end of the process.')
-                time.sleep(10)
+        server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        try:
+            server.bind(self.address)
+        except:
+            print('Waiting for the end of the process.')
+            time.sleep(10)
 
-            print('Starting the server at', datetime.now())
-            print('Waiting for a client to call.')
+        print('Starting the server at', datetime.now())
+        print('Waiting for a client to call.')
 
-            server.listen(5)
+        server.listen(5)
 
-            client, addr = server.accept()
-            data = client.recv(self.max_size)
+        client, addr = server.accept()
+        data = client.recv(self.max_size)
 
-            print('At', datetime.now(), client, 'said', data)
-            client.sendall(b'kill process')
-            self._process_kill()
-            client.close()
-            server.close()
+        print('At', datetime.now(), client, 'said', data)
+        client.sendall(b'kill process')
+        self._process_kill()
+        client.close()
+        server.close()
 
-            print('Reset connection')
+        print('Reset connection')
 
     def _process_kill(self):
         print('process id' + str(self.pid))
