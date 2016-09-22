@@ -17,7 +17,7 @@ class CreateTalk:
         talk_sound = requests.post(requests_url, auth=(username, ''), data=form)
 
         if fire_dir_name is not None or not (os.path.exists(fire_dir_name)):
-            os.mkdir(fire_dir_name)
+            os.makedirs(fire_dir_name)
         with open(fire_dir_name + '/' + file_name, 'wb') as weather_sound:
             for chunk in talk_sound.iter_content(chunk_size=1024):
                 weather_sound.write(chunk)
