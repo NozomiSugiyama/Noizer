@@ -16,7 +16,10 @@ from weathercheck import WeatherCheck
 def main():
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     today = datetime.datetime.today().strftime('%Y_%m_%d_%H_%M_%S')
-    dir_name = 'data/' + today
+
+    DIR_NAME = 'data/' + today
+    if not os.path.exists('data'):
+        os.mkdir('data')
 
     weather_check = WeatherCheck()
     news_check = NewsCheck()
@@ -34,18 +37,18 @@ def main():
 
     speaker = 'hikari'
 
-    CreateTalk.create_talk(date_talk + weather_talk + temp_talk, filename_weather, dir_name, speaker=speaker)
-    CreateTalk.create_talk(rss_news_talk, filename_news_1, dir_name, speaker=speaker)
-    CreateTalk.create_talk(rss_news_talk_2, filename_news_2, dir_name, speaker=speaker)
+    CreateTalk.create_talk(date_talk + weather_talk + temp_talk, filename_weather, DIR_NAME, speaker=speaker)
+    CreateTalk.create_talk(rss_news_talk, filename_news_1, DIR_NAME, speaker=speaker)
+    CreateTalk.create_talk(rss_news_talk_2, filename_news_2, DIR_NAME, speaker=speaker)
 
     @print_log
     @pygame_alert
     def talk():
-        CreateTalk.pygame_speak(filename_weather, dir_name)
+        CreateTalk.pygame_speak(filename_weather, DIR_NAME)
         time.sleep(1)
-        CreateTalk.pygame_speak(filename_news_1, dir_name)
+        CreateTalk.pygame_speak(filename_news_1, DIR_NAME)
         time.sleep(1)
-        CreateTalk.pygame_speak(filename_news_2, dir_name)
+        CreateTalk.pygame_speak(filename_news_2, DIR_NAME)
 
     subprocess.call("python tcpserver.py " + str(os.getpid()) + " &", shell=True)
 
