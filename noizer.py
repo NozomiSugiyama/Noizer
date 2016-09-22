@@ -14,6 +14,8 @@ from weathercheck import WeatherCheck
 
 
 def noizer():
+    print('--- noizer.py : ' + str(os.getpid()) + ' ---')
+
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     today = datetime.datetime.today().strftime('%Y_%m_%d_%H_%M_%S')
 
@@ -54,7 +56,11 @@ def noizer():
 
 
 if __name__ == '__main__':
+
+    repeat_num = 2
+
     while True:
-        noizer()
+        for i in range(repeat_num):
+            noizer()
 
 

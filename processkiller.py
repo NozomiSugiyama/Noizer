@@ -35,7 +35,7 @@ class NoizerApi():
         print('Reset connection')
 
     def _process_kill(self):
-        print('process id' + str(self.pid))
+        print('kill process id : ' + str(self.pid))
         try:
             os.kill(self.pid, signal.SIGKILL)
             print('killed :' + str(self.pid))
@@ -45,6 +45,8 @@ class NoizerApi():
             print(inst.args)
 
 if __name__ == '__main__':
+
+    print('--- processkiller.py : ' + str(os.getpid()) + ' ---')
 
     argv_list = sys.argv
     argc = len(argv_list)
