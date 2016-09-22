@@ -55,24 +55,6 @@ def noizer():
 
 if __name__ == '__main__':
     while True:
-        print('noizer.py' + str(os.getpid()))
         noizer()
 
-        alarm_hour = 1
-        alarm_minute = 17
 
-        alarm_repeat_minute = 30
-        alarm_repeat_num = 4
-
-        now = datetime.datetime.today()
-
-        if now.hour == alarm_hour and now.minute == alarm_minute:
-            for i in range(alarm_repeat_num):
-                noizer()
-                time.sleep(alarm_repeat_minute * 60)
-
-        # list内方式
-        # Reactiveプログラミング
-        #
-        # map
-        time.sleep(30)
