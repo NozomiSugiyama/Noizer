@@ -1,22 +1,31 @@
 #! /bin/python
 # -*- coding: utf-8 -*-
-
+import signal
 import subprocess
 import datetime
 import time, os
 
+
 def main():
     print('--- Start Noizer ---')
-    pid = subprocess.Popen('python noizer.py', shell=True).pid
-    print(str(pid))
-    subprocess.call("python processkiller.py " + str(pid) + " &", shell=True)
+    noizer_pid = subprocess.Popen('python noizer.py', shell=True).pid
+    print(str(noizer_pid))
+
+    # process_killer_pid = subprocess.Popen("python processkiller.py " + str(noizer_pid), shell=True).pid
+    # try:
+    #     os.kill(process_killer_pid, signal.SIGKILL)
+    # except PermissionError as inst:
+    #     print(inst.args)
+    # except ProcessLookupError as inst:
+    #     print(inst.args)
+
 
 if __name__ == '__main__':
     print('--- main.py : ' + str(os.getpid()) + ' ---')
 
     while True:
-        alarm_hour = 4
-        alarm_minute = 1
+        alarm_hour = 5
+        alarm_minute = 24
 
         alarm_repeat_minute = 30
         alarm_repeat_num = 4
@@ -28,8 +37,8 @@ if __name__ == '__main__':
                 main()
                 time.sleep(alarm_repeat_minute * 60)
 
-    # list内方式
-    # Reactiveプログラミング
-    #
-    # map
+        # list内方式
+        # Reactiveプログラミング
+        #
+        # map
         time.sleep(30)

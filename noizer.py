@@ -6,8 +6,6 @@ import datetime
 import os
 import time
 
-import subprocess
-
 from createtalk import CreateTalk, print_log, pygame_alert
 from newscheck import NewsCheck
 from weathercheck import WeatherCheck
@@ -57,7 +55,7 @@ def noizer():
 
 if __name__ == '__main__':
 
-    repeat_num = 2
+    repeat_num = 4
 
     while True:
         for i in range(repeat_num):

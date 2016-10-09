@@ -3,6 +3,7 @@ import signal
 from datetime import datetime
 import socket
 
+
 class NoizerApi():
     def __init__(self, address, port, pid):
         self.address = (address, port)
@@ -14,7 +15,7 @@ class NoizerApi():
         server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         try:
             server.bind(self.address)
-        except:
+        except Exception:
             print('Waiting for the end of the process.')
             time.sleep(10)
 
@@ -58,5 +59,4 @@ if __name__ == '__main__':
     noizer_api = NoizerApi(socket.gethostbyname(socket.gethostname()), 6789, int(argv_list[1]))
     noizer_api.start()
 
-    print("debug")
 
