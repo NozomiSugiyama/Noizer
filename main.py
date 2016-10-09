@@ -11,6 +11,7 @@ def main():
     noizer_pid = subprocess.Popen('python noizer.py', shell=True).pid
     print(str(noizer_pid))
 
+    # tcp_server process
     # process_killer_pid = subprocess.Popen("python processkiller.py " + str(noizer_pid), shell=True).pid
     # try:
     #     os.kill(process_killer_pid, signal.SIGKILL)
