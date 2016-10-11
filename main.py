@@ -1,6 +1,5 @@
 #! /bin/python
 # -*- coding: utf-8 -*-
-import signal
 import subprocess
 import datetime
 import time, os
@@ -8,11 +7,11 @@ import time, os
 
 def main():
     print('--- Start Noizer ---')
-    noizer_pid = subprocess.Popen('python noizer.py', shell=True).pid
+    noizer_pid = subprocess.Popen('python watcher.py', shell=True).pid
     print(str(noizer_pid))
 
     # tcp_server process
-    # process_killer_pid = subprocess.Popen("python processkiller.py " + str(noizer_pid), shell=True).pid
+    # process_killer_pid = subprocess.Popen("python watcherapi.py " + str(noizer_pid), shell=True).pid
     # try:
     #     os.kill(process_killer_pid, signal.SIGKILL)
     # except PermissionError as inst:

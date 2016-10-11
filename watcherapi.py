@@ -4,7 +4,7 @@ from datetime import datetime
 import socket
 
 
-class NoizerApi():
+class WatcherApi:
     def __init__(self, address, port, pid):
         self.address = (address, port)
         self.max_size = 1000
@@ -21,16 +21,16 @@ class NoizerApi():
 
         print('Starting the server at', datetime.now())
         print('Waiting for a client to call.')
+        while True:
+            server.listen(5)
 
-        server.listen(5)
+            client, addr = server.accept()
+            data = client.recv(self.max_size)
 
-        client, addr = server.accept()
-        data = client.recv(self.max_size)
-
-        print('At', datetime.now(), client, 'said', data)
-        client.sendall(b'kill process')
-        self._process_kill()
-        client.close()
+            print('At', datetime.now(), client, 'said', data)
+            client.sendall(b'kill process')
+            self._process_kill()
+            client.close()
         server.close()
 
         print('Reset connection')
@@ -47,7 +47,7 @@ class NoizerApi():
 
 if __name__ == '__main__':
 
-    print('--- processkiller.py : ' + str(os.getpid()) + ' ---')
+    print('--- watcherapi.py : ' + str(os.getpid()) + ' ---')
 
     argv_list = sys.argv
     argc = len(argv_list)
@@ -56,7 +56,7 @@ if __name__ == '__main__':
         print('Not enough arguments')
         quit()
 
-    noizer_api = NoizerApi(socket.gethostbyname(socket.gethostname()), 6789, int(argv_list[1]))
-    noizer_api.start()
+    watcher_api = WatcherApi(socket.gethostbyname(socket.gethostname()), 6789, int(argv_list[1]))
+    watcher_api.start()
 
 
