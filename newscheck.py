@@ -1,6 +1,7 @@
-import requests
-import httpclient
 import feedparser
+import requests
+
+from net import httpclient
 
 
 class NewsCheck(httpclient.HttpClient):

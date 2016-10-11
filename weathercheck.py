@@ -1,6 +1,7 @@
 import requests
-import httpclient
 from bs4 import BeautifulSoup
+
+from net import httpclient
 
 
 class WeatherCheck(httpclient.HttpClient):

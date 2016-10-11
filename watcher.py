@@ -13,7 +13,7 @@ from weathercheck import WeatherCheck
 from watcherapi import WatcherApi
 
 
-class Watcher():
+class Watcher:
     def __init__(self):
         print('--- watcher.py : ' + str(os.getpid()) + ' ---')
 

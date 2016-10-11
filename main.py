@@ -22,16 +22,12 @@ def main():
 
 if __name__ == '__main__':
     print('--- main.py : ' + str(os.getpid()) + ' ---')
+    alarm_hour = 5
+    alarm_minute = 24
+    alarm_repeat_minute = 30
+    alarm_repeat_num = 4
 
-    while True:
-        alarm_hour = 5
-        alarm_minute = 24
-
-        alarm_repeat_minute = 30
-        alarm_repeat_num = 4
-
-        now = datetime.datetime.today()
-
+    for now in iter(datetime.datetime.today, ()):
         if now.hour == alarm_hour and now.minute == alarm_minute:
             for i in range(alarm_repeat_num):
                 main()
