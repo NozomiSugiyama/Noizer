@@ -24,8 +24,8 @@ class WatcherApi:
         self.server_info = (list[0], port)
         self.max_size = 1000
 
-        self.ALARM_HOUR = 2
-        self.ALARM_MINUTE = 3
+        self.ALARM_HOUR = 6
+        self.ALARM_MINUTE = 30
         self.alarm_repeat_minute = 30
         self.alarm_repeat_num = 4
 
