@@ -10,6 +10,7 @@ import requests
 class CreateTalk:
     @staticmethod
     def create_talk(talk_content, file_name, fire_dir_name=None, speaker='hikari'):
+        print('creating' + file_name)
         requests_url = 'https://api.voicetext.jp/v1/tts'
         username = 'gelg4d8cjdjxgt15'
 

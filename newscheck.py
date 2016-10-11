@@ -6,7 +6,7 @@ from net import httpclient
 
 class NewsCheck(httpclient.HttpClient):
     def __init__(self):
-
+        print('Starting NewsCheck')
         requests_url = 'http://rss.dailynews.yahoo.co.jp/fc/rss.xml'
         super().__init__(requests_url)
 

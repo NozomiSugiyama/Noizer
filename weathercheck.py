@@ -6,7 +6,7 @@ from net import httpclient
 
 class WeatherCheck(httpclient.HttpClient):
     def __init__(self):
-
+        print('Starting WeatherCheck')
         requests_url = 'http://weather.livedoor.com/area/forecast/130010'
         super().__init__(requests_url)
         html_class_name_weather = 'icon'
