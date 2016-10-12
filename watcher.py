@@ -6,6 +6,7 @@ import os
 import socket
 import threading
 import time
+import json
 
 from src.net.createtalk import CreateTalk, pygame_alert
 from src.net.createtalk import print_log
@@ -26,7 +27,7 @@ class WatcherApi:
 
         self.stop_event = False
         self.server_info = (list[0], port)
-        self.max_size = 1000
+        self.MAX_SIZE = 1000
 
         self.ALARM_START_HOUR = 6
         self.ALARM_START_MINUTE = 30
@@ -35,7 +36,6 @@ class WatcherApi:
 
         threading.Thread(target=self.server_start).start()
         os.chdir(os.path.dirname(os.path.abspath(__file__)))
-        self.alarm_start()
 
         print('Starting watcher')
         for now in iter(datetime.datetime.today, ()):
@@ -43,7 +43,7 @@ class WatcherApi:
             if now.hour == self.ALARM_START_HOUR and now.minute == self.ALARM_START_MINUTE:
                 self.alarm_start()
                 time.sleep(self.ALARM_REPEAT_INTERVAL * 60)
-        time.sleep(30)
+            time.sleep(30)
 
     def alarm_start(self):
         if not self.stop_event:
@@ -51,9 +51,7 @@ class WatcherApi:
                 if not self.stop_event:
                     today = datetime.datetime.today().strftime('%Y_%m_%d_%H_%M_%S')
 
-                    DIR_NAME = 'data/' + today
-                    if not os.path.exists('data'):
-                        os.mkdir('data')
+                    DIR_NAME = 'log/data/' + today
 
                     weather_check = WeatherCheck()
                     news_check = NewsCheck()
@@ -100,21 +98,23 @@ class WatcherApi:
         server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         try:
             server.bind(self.server_info)
-        except Exception:
-            print('Waiting for the end of the process.')
-            time.sleep(10)
+        except:
+            print('Address already in use')
+            os._exit(1)
+
+        STOP_ALARM = 0
 
         print('Starting the server at', datetime.datetime.now())
         print('Waiting for a client to call.')
         while True:
             server.listen(5)
-
-            client, addr = server.accept()
-            data = client.recv(self.max_size)
-
-            print('At', datetime.datetime.now(), client, 'said', data)
-            self.stop_event = True
-            client.sendall(b'stop event = true')
+            client, address = server.accept()
+            data = client.recv(self.MAX_SIZE)
+            print('At', datetime.datetime.now(), client)
+            client_message = json.loads(data.decode('UTF-8'))
+            if client_message['flag'] == STOP_ALARM:
+                self.stop_event = True
+                client.sendall(json.dumps({'flag': STOP_ALARM}).encode('utf-8'))
             client.close()
         server.close()
 
