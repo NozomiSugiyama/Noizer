@@ -4,7 +4,7 @@
 import feedparser
 import requests
 
-from net import httpclient
+from src.net import httpclient
 
 
 class NewsCheck(httpclient.HttpClient):
