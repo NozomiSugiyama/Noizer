@@ -1,0 +1,52 @@
+  File "/Users/user/Documents/python/Noizer/bin/../watcher.py", line 57
+SyntaxError: Non-ASCII character '\xe6' in file /Users/user/Documents/python/Noizer/bin/../watcher.py on line 57, but no encoding declared; see http://python.org/dev/peps/pep-0263/ for details
+  File "/Users/user/Documents/python/Noizer/bin/../watcher.py", line 57
+SyntaxError: Non-ASCII character '\xe6' in file /Users/user/Documents/python/Noizer/bin/../watcher.py on line 57, but no encoding declared; see http://python.org/dev/peps/pep-0263/ for details
+Traceback (most recent call last):
+  File "/Users/user/Documents/python/Noizer/bin/../watcher.py", line 9, in <module>
+    from createtalk import CreateTalk, pygame_alert
+  File "/Users/user/Documents/python/Noizer/createtalk.py", line 8, in <module>
+    import pyaudio
+ImportError: No module named pyaudio
+Traceback (most recent call last):
+  File "/Users/user/Documents/python/Noizer/bin/../watcher.py", line 9, in <module>
+    from createtalk import CreateTalk, pygame_alert
+  File "/Users/user/Documents/python/Noizer/createtalk.py", line 8, in <module>
+    import pyaudio
+ImportError: No module named pyaudio
+Traceback (most recent call last):
+  File "/Users/user/Documents/python/Noizer/bin/../watcher.py", line 9, in <module>
+    from createtalk import CreateTalk, pygame_alert
+  File "/Users/user/Documents/python/Noizer/createtalk.py", line 8, in <module>
+    import pyaudio
+ImportError: No module named pyaudio
+Traceback (most recent call last):
+  File "/Users/user/Documents/python/Noizer/bin/../watcher.py", line 9, in <module>
+    from createtalk import CreateTalk, pygame_alert
+  File "/Users/user/Documents/python/Noizer/createtalk.py", line 8, in <module>
+    import pyaudio
+ImportError: No module named pyaudio
+Traceback (most recent call last):
+  File "/Users/user/Documents/python/Noizer/bin/../watcher.py", line 9, in <module>
+    from createtalk import CreateTalk, pygame_alert
+  File "/Users/user/Documents/python/Noizer/createtalk.py", line 8, in <module>
+    import pyaudio
+ImportError: No module named pyaudio
+Traceback (most recent call last):
+  File "/Users/user/Documents/python/Noizer/bin/../watcher.py", line 9, in <module>
+    from createtalk import CreateTalk, pygame_alert
+  File "/Users/user/Documents/python/Noizer/createtalk.py", line 8, in <module>
+    import pyaudio
+ImportError: No module named pyaudio
+Traceback (most recent call last):
+  File "/Users/user/Documents/python/Noizer/bin/../watcher.py", line 9, in <module>
+    from createtalk import CreateTalk, pygame_alert
+  File "/Users/user/Documents/python/Noizer/createtalk.py", line 8, in <module>
+    import pyaudio
+ImportError: No module named pyaudio
+Traceback (most recent call last):
+  File "/Users/user/Documents/python/Noizer/bin/../watcher.py", line 9, in <module>
+    from createtalk import CreateTalk, pygame_alert
+  File "/Users/user/Documents/python/Noizer/createtalk.py", line 8, in <module>
+    import pyaudio
+ImportError: No module named pyaudio

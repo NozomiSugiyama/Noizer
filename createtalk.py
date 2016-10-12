@@ -1,3 +1,6 @@
+#! /usr/local/bin/python3
+# -*- coding: utf-8 -*-
+
 import math
 import os
 import time
@@ -82,13 +85,13 @@ def pyaudio_alert(func):
     import time
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
-        CreateTalk.pyaudio_speak('Alarm_1.wav')
+        CreateTalk.pyaudio_speak('res/Alarm_1.wav')
         time.sleep(1)
-        CreateTalk.pyaudio_speak('good_morning.wav')
+        CreateTalk.pyaudio_speak('res/good_morning.wav')
         time.sleep(1)
         func(*args, **kwargs)
         time.sleep(1)
-        CreateTalk.pyaudio_speak('Alarm_1.wav')
+        CreateTalk.pyaudio_speak('res/Alarm_1.wav')
 
     return wrapper
 
@@ -98,13 +101,13 @@ def pygame_alert(func):
     import time
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
-        CreateTalk.pygame_speak('Alarm_1.wav')
+        CreateTalk.pygame_speak('res/Alarm_1.wav')
         time.sleep(1)
-        CreateTalk.pygame_speak('good_morning.wav')
+        CreateTalk.pygame_speak('res/good_morning.wav')
         time.sleep(1)
         func(*args, **kwargs)
         time.sleep(1)
-        CreateTalk.pygame_speak('Alarm_1.wav')
+        CreateTalk.pygame_speak('res/Alarm_1.wav')
 
     return wrapper
 

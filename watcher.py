@@ -1,4 +1,7 @@
-import os, sys, time
+#! /usr/local/bin/python3
+# -*- coding: utf-8 -*-
+
+import os, time
 import datetime
 import socket
 import threading
@@ -24,25 +27,26 @@ class WatcherApi:
         self.server_info = (list[0], port)
         self.max_size = 1000
 
-        self.ALARM_HOUR = 6
-        self.ALARM_MINUTE = 30
-        self.alarm_repeat_minute = 30
-        self.alarm_repeat_num = 4
+        self.ALARM_START_HOUR = 6
+        self.ALARM_START_MINUTE = 30
+        self.ALARM_REPEAT_INTERVAL = 30
+        self.ALARM_REPEAT_COUNT = 4
 
         threading.Thread(target=self.server_start).start()
         os.chdir(os.path.dirname(os.path.abspath(__file__)))
+        self.alarm_start()
 
         print('Starting watcher')
         for now in iter(datetime.datetime.today, ()):
             self.stop_event = False
-            if now.hour == self.ALARM_HOUR and now.minute == self.ALARM_MINUTE:
+            if now.hour == self.ALARM_START_HOUR and now.minute == self.ALARM_START_MINUTE:
                 self.alarm_start()
-                time.sleep(self.alarm_repeat_minute * 60)
+                time.sleep(self.ALARM_REPEAT_INTERVAL * 60)
         time.sleep(30)
 
     def alarm_start(self):
         if not self.stop_event:
-            for i in range(self.alarm_repeat_num):
+            for i in range(self.ALARM_REPEAT_COUNT):
                 if not self.stop_event:
                     today = datetime.datetime.today().strftime('%Y_%m_%d_%H_%M_%S')
 
