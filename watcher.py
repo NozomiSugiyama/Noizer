@@ -16,27 +16,31 @@ from src.net.weathercheck import WeatherCheck
 
 class WatcherApi:
     def __init__(self, port=6789):
-        list = []
+        ip_list = []
         for s in [socket.socket(socket.AF_INET, socket.SOCK_DGRAM)]:
-            s.connect(('8.8.8.8', 80))
-            nlist = s.getsockname()
-            for n in nlist:
-                name = nlist[0]
-                list.append(name)
+            try:
+                s.connect(('8.8.8.8', 80))
+            except:
+                print('Network is unreachable')
+                os._exit(1)
+
+            ip = s.getsockname()
+            for n in ip:
+                name = ip[0]
+                ip_list.append(name)
             s.close()
 
         self.stop_event = False
-        self.server_info = (list[0], port)
-        self.MAX_SIZE = 1000
+        self.server_info = (ip_list[0], port)
+        self.MAX_SIZE = 1024
 
-        self.ALARM_START_HOUR = 6
-        self.ALARM_START_MINUTE = 30
+        self.ALARM_START_HOUR = 23
+        self.ALARM_START_MINUTE = 29
         self.ALARM_REPEAT_INTERVAL = 30
         self.ALARM_REPEAT_COUNT = 4
 
         threading.Thread(target=self.server_start).start()
         os.chdir(os.path.dirname(os.path.abspath(__file__)))
-
         print('Starting watcher')
         for now in iter(datetime.datetime.today, ()):
             self.stop_event = False
@@ -103,6 +107,7 @@ class WatcherApi:
             os._exit(1)
 
         STOP_ALARM = 0
+        JSON_DUMPS_ERROR = 100
 
         print('Starting the server at', datetime.datetime.now())
         print('Waiting for a client to call.')
@@ -111,10 +116,19 @@ class WatcherApi:
             client, address = server.accept()
             data = client.recv(self.MAX_SIZE)
             print('At', datetime.datetime.now(), client)
-            client_message = json.loads(data.decode('UTF-8'))
+
+            try:
+                client_message = json.loads(data.decode('UTF-8'))
+            except:
+                client_message = {'flag':''}
+            
+            print('client massage number : ' + str(client_message['flag']))
+            
             if client_message['flag'] == STOP_ALARM:
                 self.stop_event = True
                 client.sendall(json.dumps({'flag': STOP_ALARM}).encode('utf-8'))
+            elif client_message['flag'] == JSON_DUMPS_ERROR:
+                client.sendall(json.dumps({'flag': JSON_DUMPS_ERROR}).encode('utf-8'))
             client.close()
         server.close()
 
