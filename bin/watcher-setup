@@ -14,18 +14,19 @@ else
     echo "Your platform ($(uname -a)) is not supported."
     exit 1
 fi
-
-case '$OS' in
+echo $OS
+case "$OS" in
     'Mac' )
-    echo '???'
     brew install python3
     brew tap homebrew/dupes
     brew tap josegonzalez/homebrew-php
     brew install php56 --with-fpm
     brew install nginx
-    pip install pygame
-    pip install pyaudio
-    pip install feedparser
-    pip install tweepy
-    pip install BeautifulSoup4;;
+    pip3 install pygame
+    pip3 install pyaudio
+    pip3 install feedparser
+    pip3 install tweepy
+    pip3 install BeautifulSoup4;;
+    '$Linux' )
+    echo 'Please make your self';;
 esac
