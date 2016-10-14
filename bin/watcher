@@ -2,7 +2,7 @@
 
 CURRENT_DIR=$pwd
 FILE_DIR=$(cd $(dirname $0); pwd)
-cd $FILE_DIR/../src
+cd $FILE_DIR/..
 python3 watcher.py
 #nohup python $FILE_DIR/../watcher.py >> $FILE_DIR/../log/python.log 2>> $FILE_DIR/../log/python_error.log &
 

@@ -31,7 +31,7 @@ class WatcherApi:
             s.close()
 
         self.stop_event = False
-        self.server_info = (ip_list[0], port)
+        self.server_info = ('127.0.0.1', port)
         self.MAX_SIZE = 1024
 
         self.ALARM_START_HOUR = 23

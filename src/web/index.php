@@ -11,6 +11,7 @@ $order = (string)filter_input(INPUT_POST, 'order');
 if ($_SERVER['REQUEST_METHOD'] === 'POST' ) {
 	$a = new WatcherApi();
 	echo $a->stopWatcher();
+	echo 'clear';
 } else {
 	echo 'not clear';
 	echo $_SERVER['REMOTE_ADDR'];

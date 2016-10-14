@@ -1,0 +1,31 @@
+#!/bin/sh
+
+CURRENT_DIR=$pwd
+FILE_DIR=$(cd $(dirname $0); pwd)
+cd $FILE_DIR
+distribution='unkown'
+
+if [ "$(uname)" == 'Darwin' ]; then
+    OS='Mac'
+elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
+    OS='Linux'
+    declare -a distribution=($(./get_os_info.sh))
+else
+    echo "Your platform ($(uname -a)) is not supported."
+    exit 1
+fi
+
+case '$OS' in
+    'Mac' )
+    echo '???'
+    brew install python3
+    brew tap homebrew/dupes
+    brew tap josegonzalez/homebrew-php
+    brew install php56 --with-fpm
+    brew install nginx
+    pip install pygame
+    pip install pyaudio
+    pip install feedparser
+    pip install tweepy
+    pip install BeautifulSoup4;;
+esac
